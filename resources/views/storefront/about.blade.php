@@ -7,7 +7,15 @@
         <div class="container"
             style="font-family: 'Gotham'; padding:70px 70px 0px 70px;">
             <div class="row justify-content-around">
-                <h2 class="title title_color text-center mb-5">About Us Page</h2>
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="title-section">
+                          <h2 class="title">
+                              Contact Us
+                          </h2>
+                      </div><!-- /.title-section -->
+                  </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
                 <p style="
                 text-align: center;
                 font-size:18px;">At SAMJ Korean Mini Mart, we believe that great food brings people together. That's why we've dedicated ourselves to providing our customers with the most authentic and delicious Korean food products available. From traditional snacks and sweets to popular beverages and pantry staples, our store offers a wide selection of high-quality Korean food and ingredients.</p>

@@ -14,7 +14,11 @@
               <div class="col-md-5">
                   <a href="/" class="footer-site-logo"><img src="{{ asset('images/logo/samj-logo.png') }}"
                           width="200"></a>
-                  <p>When Korean tradition meeets modern convenience.</p>
+                  {{-- <p>When Korean tradition meeets modern convenience.</p> --}}
+                  <div style="max-width: 380px; margin-bottom: 1em;">
+                      <p>SAM-J Korean Mini Mart is a one-stop K-mart in Hagonoy, Bulacan selling Authentic and Quality
+                          Korean grocery items</p>
+                  </div>
               </div>
               <div class="col-md-2 ml-auto">
                   <h3>SAMJ KMART</h3>

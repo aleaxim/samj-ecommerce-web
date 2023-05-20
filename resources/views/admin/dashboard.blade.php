@@ -88,7 +88,7 @@
         <!-- End Col -->
     </div>
     <!-- End Row -->
-    
+
     <div class="row">
         <div class="col-lg-7">
             <div class="card-style mb-30">
@@ -147,23 +147,21 @@
                         </thead>
                         <tbody>
                             @foreach ($latest as $l)
-
-                            <tr>
-                                <td>
-                                    <p class="text-sm">{{$l['trackingnumber']}}</p>
-                                </td>
-                                <td>
-                                    <p class="text-sm">{{$l['created_at']}}</p>
-                                </td>
-                                <td>
-                                    <p class="text-sm">₱{{$l['total']}}</p>
-                                </td>
-                                <td>
-                                    <span class="status-btn active-btn">{{$l['status']}}</span>
-                                </td>
-
-                            </tr>
-                            @endforeach                    
+                                <tr>
+                                    <td>
+                                        <p class="text-sm">{{ $l['trackingnumber'] }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{ date('Y-m-d', strtotime($l['created_at'])) }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">₱{{ $l['total'] }}</p>
+                                    </td>
+                                    <td>
+                                        <span class="status-btn active-btn">{{ $l['status'] }}</span>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <!-- End Table -->
@@ -172,64 +170,64 @@
         </div>
         <!-- End Col -->
         <div class="col-lg-5">
-            <div class="card-style mb-30" >
+            <div class="card-style mb-30">
                 {{-- Stock Alert --}}
                 <div class="left">
                     <h6 class="text-medium mb-30">Stock Alerts</h6>
                     <div class="table-responsive">
 
-                    <table id="inventory" class="table top-selling-table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <h6 class="text-sm text-medium">ID</h6>
-                                </th>
-                                <th class="min-width">
-                                    <h6 class="text-sm text-medium">
-                                        Product
-                                    </h6>
-                                </th>
-                                <th class="min-width">
-                                    <h6 class="text-sm text-medium">
-                                        Stocks
-                                    </h6>
-                                </th>
-                                <th class="min-width">
-                                    <h6 class="text-sm text-medium">
-                                        Alert Quantity
-                                    </h6>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($items as $item)
+                        <table id="inventory" class="table top-selling-table">
+                            <thead>
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->title }}</td>
-                                    @if ($item->stocks <= $item->alert_quantity)
-                                        <td class="bg-danger">{{ $item->stocks }}</td>
-                                    @else
-                                        <td>{{ $item->stocks }}</td>
-                                    @endif
-                                    <td>{{ $item->stock_alert }}</td>
+                                    <th>
+                                        <h6 class="text-sm text-medium">ID</h6>
+                                    </th>
+                                    <th class="min-width">
+                                        <h6 class="text-sm text-medium">
+                                            Product
+                                        </h6>
+                                    </th>
+                                    <th class="min-width">
+                                        <h6 class="text-sm text-medium">
+                                            Stocks
+                                        </h6>
+                                    </th>
+                                    <th class="min-width">
+                                        <h6 class="text-sm text-medium">
+                                            Alert Quantity
+                                        </h6>
+                                    </th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($items as $item)
+                                    <tr>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->title }}</td>
+                                        @if ($item->stocks <= $item->alert_quantity)
+                                            <td class="bg-danger">{{ $item->stocks }}</td>
+                                        @else
+                                            <td>{{ $item->stocks }}</td>
+                                        @endif
+                                        <td>{{ $item->stock_alert }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End Col -->
-      
+
     </div>
     <!-- End Row -->
 @endsection
 @section('script')
     <script>
-          $(function() {
+        $(function() {
             $("#inventory").DataTable({
-                "aaSorting": [ ], // Prevent initial sorting
+                "aaSorting": [], // Prevent initial sorting
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
@@ -237,6 +235,5 @@
                 "searching": false,
             })
         });
-
     </script>
 @endsection

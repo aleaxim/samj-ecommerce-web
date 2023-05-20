@@ -88,7 +88,7 @@
                                         <p>{{ $expense->id }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ $expense->expense_date }}</p>
+                                        <p>{{ date('Y-m-d h-iA', strtotime($expense->expense_date)) }}</p>
                                     </td>
                                     <td>
                                         <p>{{ $expense->product->category->name }}</p>
@@ -133,7 +133,7 @@
 @endsection
 
 @section('script')
-     {{-- SHOW MODAL IF ERROR --}}
+    {{-- SHOW MODAL IF ERROR --}}
     @if ($errors->has('name') || $errors->has('description'))
         <script>
             $(document).ready(function() {
@@ -157,7 +157,7 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "aaSorting": [ ],
+                "aaSorting": [],
                 buttons: [{
                         extend: 'excelHtml5',
                         exportOptions: {

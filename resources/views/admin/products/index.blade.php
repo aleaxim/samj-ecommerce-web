@@ -114,7 +114,7 @@
                                         </p>
                                     </td>
                                     <td>
-                                        <p>{{ $product->updated_at }}</p>
+                                        <p>{{ date('Y-m-d', strtotime($product->updated_at)) }}</p>
                                     </td>
                                     <td>
                                         @if ($product->status)

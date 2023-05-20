@@ -111,7 +111,7 @@
 @endsection
 
 @section('script')
-    // SHOW MODAL IF ERROR
+    {{-- SHOW MODAL IF ERROR --}}
     @if ($errors->has('name'))
         <script>
             $(document).ready(function() {
@@ -145,6 +145,7 @@
         $('#editModal').on('show.bs.modal', function(e) {
             var button = $(e.relatedTarget) // Button that triggered the modal
             var id = button.data('id') // Extract info from data-* attributes
+            console.log(id);
             var url = "{{ route('categories.edit', ':id') }}".replace(':id', id);
 
             $.ajax({
