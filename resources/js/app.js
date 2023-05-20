@@ -7,6 +7,8 @@
 import "./bootstrap";
 import "./sweetalert2";
 import { createApp } from "vue";
+import "../sass/app.scss";
+import "../css/app.css";
 
 // import VueLazyload from "vue-lazyload";
 

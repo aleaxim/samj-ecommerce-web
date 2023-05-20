@@ -23,26 +23,24 @@
     "file": "assets/white-bg-c2cb5760.png",
     "src": "public/images/bg/white-bg.png"
   },
-  "resources/css/app.css": {
-    "file": "assets/app-50ab7f69.css",
-    "isEntry": true,
-    "src": "resources/css/app.css"
-  },
   "resources/js/app.css": {
-    "file": "assets/app-b7221967.css",
+    "file": "assets/app-6ed96b27.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
-    "css": [
-      "assets/app-b7221967.css"
+    "assets": [
+      "assets/GothamRoundedMedium-c4bcf6fc.otf",
+      "assets/SAMJ_LoginBG3-ae672ae1.png",
+      "assets/SAMJ_BG_white-57052ef4.png",
+      "assets/plain-blue-7561a68b.png",
+      "assets/white-bg-c2cb5760.png",
+      "assets/plain-red-75fa5c74.png"
     ],
-    "file": "assets/app-24ed7ad2.js",
+    "css": [
+      "assets/app-6ed96b27.css"
+    ],
+    "file": "assets/app-336e2c38.js",
     "isEntry": true,
     "src": "resources/js/app.js"
-  },
-  "resources/sass/app.scss": {
-    "file": "assets/app-c9821e6e.css",
-    "isEntry": true,
-    "src": "resources/sass/app.scss"
   }
 }
