@@ -16,8 +16,8 @@ export default defineConfig({
         // vue(),
 
         laravel({
-            // input: ['resources/sass/app.scss', 'resources/js/app.js','resources/css/app.css'],
-            input: ['resources/js/app.js'],
+            input: ['resources/sass/app.scss', 'resources/js/app.js','resources/css/app.css'],
+            // input: ['resources/js/app.js'],
 
             refresh: true,
         }),
