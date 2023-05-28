@@ -74,7 +74,7 @@
                                 class="text-danger">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <input id="e_total_price" name="e_total_price" type="number"
+                            <input id="e_total_price" name="e_total_price" type="number" step="any"
                                 class="form-control @error('e_total_price') is-invalid @enderror"
                                 value="{{ old('e_total_price') }}" placeholder="Enter total price" required>
                             @error('e_total_price')

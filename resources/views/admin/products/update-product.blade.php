@@ -110,7 +110,7 @@
                                             <label for="price" class="col-form-label">Price <span
                                                     class="text-danger">*</span>
                                             </label>
-                                            <input id="price" name="price" type="number"
+                                            <input id="price" name="price" type="number" step="any"
                                                 class="form-control @error('price') is-invalid @enderror"
                                                 value="{{ old('price', $record->price) }}"
                                                 placeholder="Enter Product Price" required>
