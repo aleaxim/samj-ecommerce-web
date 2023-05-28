@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="scss" scoped>
 .main-box {
     width: 100%;
     display: flex;

@@ -6,8 +6,8 @@
 <template>
     <!-- <div class="card-body"> -->
     <!-- <table id="table" class="table table-bordered table-striped"> -->
-    <div class="table-wrapper table-responsive" id="table_wrapper">
-        <table class="table striped-table table-hover" id="table">
+    <div class="table-wrapper table-responsive" id="order_table_wrapper">
+        <table class="table striped-table table-hover" id="order_table">
             <thead>
                 <tr>
                     <th>Order No.</th>
@@ -198,7 +198,7 @@ export default {
 };
 
 $(document).ready(function () {
-    $("#table")
+    $("#order_table")
         .DataTable({
             responsive: true,
             lengthChange: false,
@@ -227,6 +227,6 @@ $(document).ready(function () {
         })
         .buttons()
         .container()
-        .appendTo("#table_wrapper .col-md-6:eq(0)");
+        .appendTo("#order_table_wrapper .col-md-6:eq(0)");
 });
 </script>

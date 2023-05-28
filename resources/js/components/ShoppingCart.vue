@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     .update-btn{
         background-color: #2E32CD !important;
         color: white !important;
