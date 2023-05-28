@@ -109,7 +109,7 @@
 @endsection
 
 @section('script')
-    // SHOW MODAL IF ERROR
+    {{-- SHOW MODAL IF ERROR --}}
     @if ($errors->has('name') || $errors->has('email') || $errors->has('password'))
         <script>
             $(document).ready(function() {
