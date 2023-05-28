@@ -31,7 +31,7 @@
     <!-- ========== title-wrapper end ========== -->
 
 
-    <div class="card-styles">
+    <div class="card-styles" id="app">
         <div class="card-style-3 mb-30">
             <div class="card-content">
                 <order-show paymentdata="{{ $payment }}"></order-show>

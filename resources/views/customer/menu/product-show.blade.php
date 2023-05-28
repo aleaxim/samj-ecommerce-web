@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
+<div id="#app"> 
     <product-details product-data="{{ $product }}" uid="{{Auth::user()->id}}"></product-details>
 </div>
 @endsection

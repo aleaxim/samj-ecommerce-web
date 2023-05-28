@@ -22,7 +22,7 @@
 
 <body>
 
-    <div class="row g-0 auth-row vh-100">
+    <div class="row g-0 auth-row min-vh-100">
         @yield('content')
     </div>
 </body>

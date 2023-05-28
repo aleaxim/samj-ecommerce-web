@@ -90,7 +90,7 @@
 
         <!-- ========== section start ========== -->
         <section class="section">
-            <div id="app" class="container-fluid">
+            <div class="container-fluid">
                 @yield('content')
             </div>
             <!-- end container -->

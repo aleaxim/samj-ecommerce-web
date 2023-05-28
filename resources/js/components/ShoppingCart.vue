@@ -170,7 +170,7 @@
                 <div class="proceed-checkout">
                     <ul>
                         <!-- <li class="subtotal">Subtotal ₱<span>240.00</span></li> -->
-                        <li class="cart-total">Total <span>₱ {{total}}</span></li>
+                        <li class="cart-total">Total <span>Php {{total}}</span></li>
                     </ul>
                     <!-- <button @click="proceed()" :disabled="canProceed" class="proceed-btn">PROCEED TO CHECK OUT <span class="text-danger" v-if="canProceed"> *Total quantity of order must be 12 or more</span></button> -->
 
@@ -481,7 +481,7 @@
             
             data.forEach(this.populateCart)
 
-            console.log(this.carts)
+            // console.log(this.carts)
         }
     } 
 </script>
