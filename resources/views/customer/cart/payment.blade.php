@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="checkout-section bg-white">
+    <section class="checkout-section bg-plain">
         <div class="container">
 
             @if ($errors->any())

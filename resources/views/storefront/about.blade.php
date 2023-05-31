@@ -55,7 +55,7 @@
                     color:#ffffff; 
                     text-align: center;
                     font-family: 'Gotham';">
-                    OUR TEAM</h2>
+                    </h2>
             </div>
     </div>
 </div>

@@ -2,39 +2,7 @@
 
 @section('content')
     <!-- Register Section Start -->
-    <div class="bg-3">
-        <!-- <img src="{{ asset('images/Food1.png') }}" style="
-        position: absolute;
-        left: -100px;
-        top: 450px;
-        z-index: 1;
-        width: 35%;">
-                                                                                                                        <img src="{{ asset('images/Food2.png') }}" style="
-        position: absolute;
-        left: 1450px;
-        top: 0px;
-        z-index: 1;
-        width: 40%;">
-                                                                                                                        <img src="{{ asset('images/Food3.png') }}" style="
-        position: absolute;
-        left: 1550px;
-        top: 450px;
-        z-index: 1;
-        width: 28%;">
-                                                                                                                        <img src="{{ asset('images/Food3.png') }}" style="
-        position: absolute;
-        left: 1350px;
-        top: 450px;
-        z-index: 1;
-        width: 30%;"> -->
-        {{-- <div class="container"
-            style="background-color: white; border-radius: 25px; padding: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);"> --}}
+    <div class="bg-3-1">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
@@ -176,4 +144,5 @@
             </div>
         </div>
         <!-- Register Section End -->
-    @endsection
+    </div>
+@endsection

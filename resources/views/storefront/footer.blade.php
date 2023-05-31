@@ -42,7 +42,7 @@
               <div class="col-md-2 ml-auto">
                   <h3>GET THE APP</h3>
                   <ul class="list-unstyled links">
-                      <li><a href="#" class="dl-btn-grad">SAMJ KMART App</a></li>
+                      <li><a href="https://expo.dev/artifacts/eas/h1STpCRwFY6RroP2qmp2M9.apk" target="_blank" class="dl-btn-grad">SAMJ KMART App</a></li>
                   </ul>
               </div>
           </div>
