@@ -3,8 +3,7 @@
 @section('content')
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+
 
     <!-- ========== title-wrapper start ========== -->
     <div class="title-wrapper  bg-3">
@@ -64,4 +63,7 @@
   </div>
 </section>
 @endsection
-
+@section('script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+@endsection

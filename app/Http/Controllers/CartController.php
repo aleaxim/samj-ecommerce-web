@@ -46,9 +46,7 @@ class CartController extends Controller
         $validate = [
             'quantity' => ['required', 'numeric'],
         ];
-
         $validated = $this->validation($data, $validate);
-
         if($validated->fails()){
             return response()->json([
                 'status' => 200,
@@ -56,16 +54,27 @@ class CartController extends Controller
             ]);
         }
 
-        $id = $request->uid;
 
-        $cart = Cart::create([
-            'user_id' => $id,
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-        ]);
+        $existingCart = Cart::where('user_id', $request->uid)->where('product_id', $request->product_id)->first();
 
-       
-        $cart->save();
+        // check stocks before adding to cart
+        if($existingCart->product->stocks >= $existingCart + $request->quantity){
+            if ($existingCart) {
+                $existingCart->quantity += $request->quantity;
+                $existingCart->save();
+            } else {
+                $cart = new Cart();
+                $cart->user_id = $request->uid;
+                $cart->product_id = $request->product_id;
+                $cart->quantity = $request->quantity;
+                $cart->save();
+            }
+        } else {
+            return response()->json([
+                'status' => 200,
+                'hasError' => true,
+            ]);
+        }
 
         return response()->json([
             'status' => 200,
@@ -389,6 +398,9 @@ class CartController extends Controller
         $payment->status = "Order Placed";
         // $payment->payment_image_url = $paymentID;
         $payment->save();
+
+
+        // insert bawas sa inventory 
 
     }
 

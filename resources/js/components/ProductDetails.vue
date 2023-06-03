@@ -65,8 +65,8 @@
                 .qty-btn-plus,
                 .qty-btn-minus,
                 .qty-text {
-                    border: #ededed 1px solid !important;
-                    color: #b2b2b2;
+                    border: #C0C0C0 1px solid !important;
+                    color: #848482;
                     background-color: white;
                     padding: 0.25rem;
                     max-width: 50px;
@@ -190,12 +190,12 @@
                     </div>
 
                     <div class="d-flex align-items-center">
-                        <span style="margin-right: 1.5rem; font-size: 0.85rem">
+                        <span style="margin-right: 1.5rem; font-size: 0.85rem; font-weight: 500;">
                             Stocks: {{ stocks }}</span
                         >
                     </div>
 
-                    <h6 class="mt-4 fw-normal">Quantity</h6>
+                    <h6 class="mt-4 fw-bold">Quantity</h6>
                     <div class="d-flex">
                         <button
                             @click="changeQty(-1)"
@@ -205,10 +205,11 @@
                         </button>
                         <input
                             class="qty-text"
-                            type="text"
+                            type="number"
                             min="1"
                             v-model="qty"
-                            @change="changeQty(0)"
+                            @input="changeQty(0)"
+                            @blur="resetQty"
                         />
                         <button @click="changeQty(1)" class="btn qty-btn-plus">
                             <i class="fa-solid fa-plus"></i>
@@ -225,6 +226,9 @@
                                 class="fa-solid fa-circle-notch fa-spin ml-2"
                             ></i>
                         </button>
+                    </div>
+                    <div v-show="qtyMax">
+                        <span class="mt-2 text-danger fw-normal">You have reached the maximum quantity available for this item</span>
                     </div>
 
                     <!-- <div class="w-75 d-flex justify-content-end align-items-center mt-4">
@@ -296,6 +300,7 @@ export default {
             sInd: 0,
 
             qty: 1,
+            qtyMax: false,
 
             // directory: '',
 
@@ -445,11 +450,12 @@ export default {
                         self.isLoading = false;
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        // console.log(error);
                         Swal.fire({
                             icon: "error",
                             title: "Oh no...",
-                            text: "Error in Back end please refresh the page or contact us if error persist",
+                            // text: "Error in Back end please refresh the page or contact us if error persist",
+                            text: "You have reached the max quantity of this item in you cart.",
                             showConfirmButton: false,
                         });
                         self.isLoading = false;
@@ -517,16 +523,28 @@ export default {
         },
 
         changeQty(val) {
-            this.qty = parseInt(this.qty) + parseInt(val);
-            this.checkQty();
-            this.changePrice();
+            if(this.qty != "") {
+                this.qty = parseInt(this.qty) + parseInt(val);
+                this.checkQty();
+                this.changePrice();
+            }
         },
 
         checkQty() {
-            if (this.qty == "" || this.qty < 0 || !/^\d*\.?\d*$/.test(this.qty))
+            if (this.qty <= 0 || !/^\d*\.?\d*$/.test(this.qty))
                 this.qty = 1;
-            if (this.qty >= this.product.stocks) {
+            if (this.qty > this.product.stocks) {
                 this.qty = this.product.stocks;
+                this.qtyMax = true;
+            } else {
+                this.qtyMax = false;
+            }
+        },
+
+        resetQty() {
+            if(this.qty === "") {
+                this.qty = 1;
+                this.changePrice();
             }
         },
 

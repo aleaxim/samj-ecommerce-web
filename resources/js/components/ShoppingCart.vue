@@ -131,8 +131,11 @@
                                     <span class="inc qtybtn" @click="changeQty(1, ind)">+</span>
                                 </div>
                             </div>
+                            <div v-show="cart.qtyMax">
+                                <span class="mt-2 text-danger fw-normal">You have reached the max quantity available</span>
+                            </div>
                         </td>
-
+                        <!-- v-show="qtyMessage" -->
                         <td class="total-price first-row" id="total-price">{{ parseFloat(cart.product.price) * parseInt(cart.qty) }}</td>
                         <td class="close-td first-row" @click="deleteCart(ind, cart.id)"><i class="fas fa-xmark"></i></td>
                     </tr>
@@ -208,6 +211,7 @@
                 path:`${window.location.protocol}//${window.location.hostname}/storage/`,
 
                 prodUrl:`menu/`,
+
             }
         },
        
@@ -284,6 +288,8 @@
                     // cover: data.cart.product.product_cover
 
                     stocks: data.cart.product.stocks,
+
+                    qtyMax: false,
 
                 }
 
@@ -390,8 +396,11 @@
             checkQty(ind){
                 if(/^\d*\.?\d*$/.test(this.carts[ind].qty)){
                     if (parseInt(this.carts[ind].qty) <= 0) this.carts[ind].qty = 1
-                    if (this.carts[ind].qty >= this.carts[ind].stocks) {
+                    if (this.carts[ind].qty > this.carts[ind].stocks) {
                         this.carts[ind].qty = this.carts[ind].stocks;
+                        this.carts[ind].qtyMax = true;
+                    } else {
+                        this.carts[ind].qtyMax = false;
                     }
                 }
                 else{
