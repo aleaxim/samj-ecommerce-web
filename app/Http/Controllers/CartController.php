@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserOrderRequest;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\User;
 use Omnipay\Omnipay;
+use App\Models\Payment;
 // use App\Models\Paypal;
 // use Omnipay\Omnipay;
 
 
-use App\Models\Payment;
+use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Models\OrderContact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserOrderRequest;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -55,25 +56,27 @@ class CartController extends Controller
         }
 
 
-        $existingCart = Cart::where('user_id', $request->uid)->where('product_id', $request->product_id)->first();
+        $existingCart = Cart::where('user_id', $request->uid)->where('product_id', $request->product_id)->where('inPayment', false)->first();
+  
 
-        // check stocks before adding to cart
-        if($existingCart->product->stocks >= $existingCart + $request->quantity){
-            if ($existingCart) {
+        if($existingCart){
+            // check stocks before adding to cart
+            if ($existingCart->product->stocks >= ($existingCart->quantity + $request->quantity)) {
                 $existingCart->quantity += $request->quantity;
                 $existingCart->save();
             } else {
-                $cart = new Cart();
-                $cart->user_id = $request->uid;
-                $cart->product_id = $request->product_id;
-                $cart->quantity = $request->quantity;
-                $cart->save();
+            // if quantity exceeds, send error
+                return response()->json([
+                    'status' => 200,
+                    'hasExceed' => true,
+                ]);
             }
         } else {
-            return response()->json([
-                'status' => 200,
-                'hasError' => true,
-            ]);
+            $cart = new Cart();
+            $cart->user_id = $request->uid;
+            $cart->product_id = $request->product_id;
+            $cart->quantity = $request->quantity;
+            $cart->save();
         }
 
         return response()->json([
@@ -382,11 +385,18 @@ class CartController extends Controller
 
         $carts = Cart::where('user_id', $userID)->where('inPayment', false)->get();
 
+
         $carts_id = [];
         foreach($carts as $cart){
             array_push($carts_id, $cart->id);
             $cart->inPayment = true;
+            // $cart->product->stocks -= $cart->quantity; // didn't worked
             $cart->save();
+
+            // decrease stocks when order placed
+            $product = Product::find($cart->product_id);
+            $product->stocks -= $cart->quantity;
+            $product->save();
         }
 
         $payment->product_id = json_encode($carts_id);
@@ -398,10 +408,6 @@ class CartController extends Controller
         $payment->status = "Order Placed";
         // $payment->payment_image_url = $paymentID;
         $payment->save();
-
-
-        // insert bawas sa inventory 
-
     }
 
 

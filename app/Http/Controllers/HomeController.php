@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Payment;
+use App\Models\Product;
 use App\Rules\alpha_spaces;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -79,6 +80,21 @@ class HomeController extends Controller
         $order->status = "Cancelled";
         $order->save();
 
+        // for each cart item
+        $cart_ids = json_decode($order->product_id);
+
+        foreach ($cart_ids as $cart_Id) {
+            $cart_item = Cart::find($cart_Id);
+
+            // increment product stocks 
+            // way 1 
+            // $product Product::find($cart_item->product_id);
+            // $product->stocks += $cart_item->quantity;
+            // $product->save();
+
+            // way 2
+            Product::where('id', $cart_item->product_id)->increment('stocks', $cart_item->quantity );
+        }
         return response()->json(['status' => 200]); 
     }
 

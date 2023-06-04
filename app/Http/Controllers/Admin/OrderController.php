@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Cart;
 use App\Models\Payment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -103,14 +104,22 @@ class OrderController extends Controller
         ];
 
         if( $counts[$request->status] <= $counts[$payment->status]){
-
             return response()->json([
                 'hasError' => true,
             ]);
         }
 
+        if( $request->status == 'Cancelled'){
+            $cart_ids = json_decode($payment->product_id);
+
+            foreach ($cart_ids as $cart_Id) {
+                $cart_item = Cart::find($cart_Id);
+
+                Product::where('id', $cart_item->product_id)->increment('stocks', $cart_item->quantity );
+            }
+        } 
+
         $payment->status = $request->status;
-    
         $payment->save();
 
         return response()->json([

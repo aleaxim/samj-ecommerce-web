@@ -209,7 +209,7 @@
                             min="1"
                             v-model="qty"
                             @input="changeQty(0)"
-                            @blur="resetQty"
+                            @blur="resetQty()"
                         />
                         <button @click="changeQty(1)" class="btn qty-btn-plus">
                             <i class="fa-solid fa-plus"></i>
@@ -435,10 +435,17 @@ export default {
                             Swal.fire({
                                 icon: "error",
                                 title: "Oh no...",
-                                text: "Please enter a right Input thanks",
+                                text: "Please enter a right input",
                                 showConfirmButton: false,
                             });
-                        } else {
+                        } else if (res.data.hasExceed) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Quantity exceeded",
+                                text: "You have reached the max quantity of this item in you cart.",
+                                showConfirmButton: false,
+                            });
+                        }else {
                             Swal.fire({
                                 icon: "success",
                                 title: "Success",
@@ -450,12 +457,11 @@ export default {
                         self.isLoading = false;
                     })
                     .catch(function (error) {
-                        // console.log(error);
+                        console.log(error);
                         Swal.fire({
                             icon: "error",
                             title: "Oh no...",
-                            // text: "Error in Back end please refresh the page or contact us if error persist",
-                            text: "You have reached the max quantity of this item in you cart.",
+                            text: "Error in Back end please refresh the page or contact us if error persist",
                             showConfirmButton: false,
                         });
                         self.isLoading = false;

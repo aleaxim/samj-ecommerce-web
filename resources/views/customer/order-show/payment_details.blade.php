@@ -18,7 +18,7 @@
             </li> --}}
             <li>
                 <label>Payment Status:</label>
-                <span>Paid</span>
+                <span style="color:#2E32CD; font-weight:600">Paid</span>
             </li>
         </ul>
     </div>

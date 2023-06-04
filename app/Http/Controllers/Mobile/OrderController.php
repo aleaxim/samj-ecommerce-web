@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Mobile;
 
+use App\Models\Cart;
+use App\Models\Payment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -16,8 +19,21 @@ class OrderController extends Controller
 
     public function cancelOrder(Request $request)
     {
-        DB::table('payments')
-            ->where('id', $request->id)
-            ->delete();
+        $payment = Payment::find('id', $request->id);
+
+        // store each cart item
+        $cart_ids = json_decode($payment->product_id);
+
+        foreach ($cart_ids as $cart_Id) {
+            $cart_item = Cart::find($cart_Id);
+
+            Product::where('id', $cart_item->product_id)->increment('stocks', $cart_item->quantity );
+        }
+
+        $payment->delete();
+
+        // DB::table('payments')
+        //     ->where('id', $request->id)
+        //     ->delete();
     }
 }

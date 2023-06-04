@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Payment;
+use App\Models\Product;
 use App\Models\OrderContact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -57,10 +58,15 @@ class CartController extends Controller
 
         $product_ids = str_replace('"', '', json_encode($request->product_id));
         foreach (json_decode($request->product_id) as $product_id) {
-            DB::table('carts')
-                ->where('inPayment', 0)
-                ->where('product_id', $product_id)
-                ->update(['inPayment' => 1]);
+            // DB::table('carts')
+            //     ->where('inPayment', 0)
+            //     ->where('product_id', $product_id)
+            //     ->update(['inPayment' => 1]);
+
+            $cart_item = Cart::where('inPayment', 0)->where('product_id', $product_id)->update(['inPayment' => 1]);
+
+            // decrement stocks
+            Product::where('id', $product_id)->decrement('stocks', $cart_item->quantity );
         }
         
         // hatak nalang by default

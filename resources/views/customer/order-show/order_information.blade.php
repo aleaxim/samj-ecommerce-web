@@ -15,7 +15,11 @@
 
             <li>
                 <label>Order Status:</label>
-                <span style="color:#CD2E3A">{{ $order->status }}</span>
+                @if ($order->status != 'Cancelled')
+                    <span style="color:#2E32CD; font-weight:600">{{ $order->status }}</span>
+                @else
+                    <span style="color:#CD2E3A; font-weight:600">{{ $order->status }}</span>
+                @endif
             </li>
 
         </ul>
