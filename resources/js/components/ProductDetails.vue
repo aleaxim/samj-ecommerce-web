@@ -548,7 +548,7 @@ export default {
         },
 
         resetQty() {
-            if(this.qty === "") {
+            if (this.qty === "" || this.qty == 0 ) {
                 this.qty = 1;
                 this.changePrice();
             }
