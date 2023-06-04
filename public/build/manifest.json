@@ -29,14 +29,14 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.css": {
-    "file": "assets/app-4f539eed.css",
+    "file": "assets/app-3679fd58.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
     "css": [
-      "assets/app-4f539eed.css"
+      "assets/app-3679fd58.css"
     ],
-    "file": "assets/app-75dc5f07.js",
+    "file": "assets/app-4db9e16b.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
